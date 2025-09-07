@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./Dashboard.css";
 const Dashboard = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const handleItemClick = (index) => {
         setActiveIndex(index); // Set the active index on click
     };
+    const { logout } = useAuth0();
     return (
         <main>
             <nav className="main-menu">
@@ -58,6 +60,14 @@ const Dashboard = () => {
                             <i className="fa fa-sliders nav-icon"></i>
                             <span className="nav-text">Settings</span>
                         </a>
+                    </li>
+                    <li className={`nav-item ${activeIndex === 5 ? 'active' : ''}`} onClick={() => handleItemClick(5)}>
+                        <b></b>
+                        <b></b>
+                        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span className="nav-text">  Log Out</span>
+                        </button>
                     </li>
                 </ul>
             </nav>

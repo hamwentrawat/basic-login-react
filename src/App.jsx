@@ -1,26 +1,29 @@
 import { useState } from 'react'
 import './App.css'
-import Login from './assets/Login'
 import LoginSub from './assets/LoginSub'
 import Dashboard from './assets/dashboard/Dashboard'
+import { useAuth0 } from "@auth0/auth0-react";
 function App() {
-  // const uniqueId = crypto.randomUUID();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // // const [allEntry, setAllEntry] = useState([]);
-  // const [error, setError] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const handleLogin = () => {
-    setIsAuthenticated(true);
+    setIsLogin(true);
   };
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
   return (
     <>
+      {/* {isLogin ? (
+        <Dashboard />
+      ) : (
+        <LoginSub handleLogin={handleLogin} />
+      )} */}
       {isAuthenticated ? (
         <Dashboard />
       ) : (
         <LoginSub handleLogin={handleLogin} />
       )}
-
     </>
   )
 }

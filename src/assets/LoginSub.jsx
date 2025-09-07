@@ -13,8 +13,6 @@ const LoginSub = ({ handleLogin }) => {
     const [error, setError] = useState('');
     const actionFormSubmit = (e) => {
         e.preventDefault();
-        // const newEntry = { id: uniqueId, email: email, password: password }
-        // setAllEntry([...allEntry, newEntry]);
         setEmail('');
         setPassword('');
         if (email === "admin@gmail.com" && password === "admin@123") {

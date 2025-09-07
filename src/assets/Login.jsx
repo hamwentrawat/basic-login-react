@@ -1,6 +1,6 @@
-// import React, { useId, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 const Login = ({ onSubmitForm, error, setEmail, email, password, setPassword }) => {
-
+  const { loginWithRedirect } = useAuth0();
   return (
     <>
       <form action="#" className="sign-in-form" onSubmit={onSubmitForm}>
@@ -15,6 +15,7 @@ const Login = ({ onSubmitForm, error, setEmail, email, password, setPassword }) 
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <input type="submit" value="Login" className="btn solid" />
+        Or <button className="btn solid" onClick={() => loginWithRedirect()}>Log In Auth0</button>;
         <p className="social-text">Or Sign in with social platforms</p>
         <div className="social-media">
           <a href="#" className="social-icon">
